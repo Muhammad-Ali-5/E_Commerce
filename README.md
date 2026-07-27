@@ -1,77 +1,104 @@
-# Apex Commerce Suite — Vector E-Commerce & Portfolio Showcase Platform
+# 📦 Apex Suite — Vector E-Commerce & Hardware Catalog Engine (Portfolio UI Showcase)
 
-**Apex Commerce Suite** is a modern, high-performance, image-free E-Commerce Front-End & Interactive Portfolio Showcase built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, **Lucide Icons**, and **Shadcn UI**.
+[![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-18.0-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![Shadcn UI](https://img.shields.io/badge/UI_Primitives-Shadcn_%2F_Radix-000000?style=for-the-badge)](https://ui.shadcn.com/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-apex--commerce--suite.vercel.app-000000?style=for-the-badge&logo=vercel)](https://apex-commerce-suite.vercel.app)
 
-Designed to showcase top-tier web developer skills without relying on fragile external raster images, all products feature 100% procedural vector graphic blueprints, instant real-time cart state, discount calculators, and a simulated checkout pipeline.
+**Apex Suite** is a high-performance vector e-commerce storefront and hardware catalog frontend showcase built with **Next.js 14 (App Router)**, **React 18**, **TypeScript**, **Tailwind CSS**, and **Radix UI Primitives**.
 
----
+Engineered with 100% procedural vector graphic product visualizers (zero raster image assets), it features real-time cart state management, active promo code discount calculations, slide-over order drawers, simulated checkout modals, category filtering, live specification search, and light/dark theme modes.
 
-## 🌟 Key Features & Capabilities
-
-- **100% Vector & Graphic Product Visualizers (No Raster Images)**:
-  - Procedurally rendered SVG vector blueprints for hardware and software modules (Curved Displays, Mechanical Keyboards, Studio Headphones, Neural Processors, FIDO2 Security Keys, Thunderbolt Docks).
-  - Guarantees 100% reliable rendering without broken external image dependencies or slow image asset downloads.
-
-- **Real-Time Client Cart Engine & Drawer**:
-  - Interactive slide-over cart drawer (`CartDrawer.tsx`).
-  - Dynamic quantity increments, subtotals, tax calculation, and item removal.
-  - Interactive Promo Code System (`APEX20` / `APEX10` for 20% / 10% instant discounts).
-
-- **Simulated Order Checkout**:
-  - Interactive Checkout Modal (`CheckoutModal.tsx`) with shipping inputs, simulated card payment, and instant order ID generation.
-
-- **Category Curation & Live Search Indexing**:
-  - Category filters (`All`, `Displays`, `Peripherals`, `Audio & IoT`, `SaaS Modules`).
-  - Real-time search filter indexing product names, categories, and technical specifications.
-
-- **Dark & Light Mode Support**:
-  - Persistent theme mode state in `localStorage` with smooth color transitions.
-
-- **Responsive Architecture**:
-  - Pixel-perfect layout across desktop, tablet, and mobile displays.
+> 🌐 **Live Web Application**: [https://apex-commerce-suite.vercel.app](https://apex-commerce-suite.vercel.app)
 
 ---
 
-## 🛠️ Architecture & Tech Stack
+## 🖼️ Application Interface Gallery
 
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS & Vanilla CSS Design Tokens
+### 1. Vector E-Commerce Showcase Header
+![Apex Suite Hero Interface](public/hero-preview.png)
+
+### 2. Procedural Vector Product Catalog & Specs
+![Apex Suite Vector Catalog](public/vector-catalog.png)
+
+### 3. Interactive Slide-Over Cart Drawer & Discount Engine
+![Apex Suite Cart Drawer](public/cart-drawer.png)
+
+### 4. Simulated Order Checkout Modal
+![Apex Suite Checkout Modal](public/checkout-modal.png)
+
+---
+
+## ✨ Core Technical Capabilities & UI Modules
+
+- 🎨 **100% Procedural Vector Visualizers (`ProductVector.tsx`)**: Zero raster image dependencies. Inline SVG vector illustration engine rendering architectural OLED displays, haptic mechanical keyboards, spatial audio studio pods, and quantum AI accelerators.
+- 🛒 **Cart State & Discount Engine (`CartContext.tsx` & `CartDrawer.tsx`)**: React Context state management for item additions, dynamic quantity controls, subtotal calculations, and promo code validation (`APEX20` 20% discount engine).
+- 🔍 **Live Hardware Catalog Engine (`ProductGrid.tsx`)**: Real-time specification search bar and category filtering tabs (*Displays, Peripherals, Audio & IoT, SaaS Modules*).
+- 🔒 **Simulated Order Checkout (`CheckoutModal.tsx`)**: Accessible Radix/Shadcn dialog modal handling user details input and instant order confirmation simulation.
+- 🌓 **Dynamic Theme Engine (`ThemeContext.tsx`)**: Light/Dark mode state controller (`next-themes`) and dynamic sticky navigation header with cart item badge counter.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Core Framework**: Next.js 14.2 (App Router)
+- **UI Library**: React 18
+- **Language**: TypeScript 5.0
+- **Styling**: Tailwind CSS 3.4
+- **UI Primitives**: Radix UI & Shadcn UI
+- **Drawer & Notifications**: Vaul Drawer & Sonner Toasts
 - **Icons**: Lucide React
-- **UI Components**: Custom Primitives & Shadcn UI Primitives
-- **Graphics**: Procedural SVG Vector Blueprints (`ProductVector.tsx`)
-- **State Management**: React Context API (`CartContext.tsx`, `ThemeContext.tsx`)
 
 ---
 
-## 🚀 Quick Start Guide
+## 📂 Repository Structure
 
-### Prerequisites
-- Node.js 18.x or higher
-- npm, yarn, or pnpm
+```
+apex-commerce-suite/
+├── public/                 # High-resolution screenshots & web assets
+│   ├── hero-preview.png        # Hero section screenshot
+│   ├── vector-catalog.png      # Vector catalog screenshot
+│   ├── cart-drawer.png         # Slide-over cart drawer screenshot
+│   ├── checkout-modal.png      # Checkout modal screenshot
+│   └── site.webmanifest
+├── src/
+│   ├── app/
+│   │   ├── components/     # UI components
+│   │   │   ├── Header.tsx            # Sticky navigation bar & theme toggle
+│   │   │   ├── Hero.tsx              # Hero banner & blueprint feature card
+│   │   │   ├── ProductGrid.tsx       # Live spec search & category filtering
+│   │   │   ├── ProductCard.tsx       # Individual vector product card
+│   │   │   ├── ProductVector.tsx     # Procedural inline SVG graphic engine
+│   │   │   ├── CartDrawer.tsx        # Slide-over cart & promo code calculator
+│   │   │   ├── CheckoutModal.tsx     # Simulated checkout dialog modal
+│   │   │   ├── CartContext.tsx       # Cart state & discount context provider
+│   │   │   ├── ThemeContext.tsx      # Light/Dark mode context provider
+│   │   │   └── Footer.tsx            # Footer & status badges
+│   │   ├── globals.css               # Tailwind directives & design tokens
+│   │   ├── layout.tsx                # Metadata & root layout
+│   │   └── page.tsx                  # Main page composition
+├── package.json
+└── README.md
+```
 
-### Installation & Local Setup
+---
+
+## 🚀 Local Development Setup
 
 ```bash
-# Clone or navigate to directory
+# 1. Clone the repository
+git clone https://github.com/m-ali-swe/apex-commerce-suite.git
+
+# 2. Change working directory
 cd apex-commerce-suite
 
-# Install dependencies
+# 3. Install dependencies
 npm install
 
-# Start local development server
+# 4. Start local development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to inspect the application.
-
----
-
-## 📦 Production Build
-
-To test static page generation and production build optimization:
-
-```bash
-npm run build
-npm run start
-```
+Open [http://localhost:3000](http://localhost:3000) in your browser.

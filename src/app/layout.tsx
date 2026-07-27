@@ -16,6 +16,16 @@ export const metadata: Metadata = {
   title: "Apex Suite — Vector E-Commerce & Interactive Showcase Platform",
   description:
     "High-performance vector e-commerce storefront and interactive portfolio showcase built with Next.js 14, Tailwind CSS, Lucide icons, and vector graphics.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico?v=20260727" },
+      { url: "/favicon-32x32.png?v=20260727", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png?v=20260727", sizes: "16x16", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico?v=20260727",
+    apple: "/apple-touch-icon.png?v=20260727",
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     title: "Apex Suite — Vector E-Commerce Platform",
     description: "High-performance vector e-commerce storefront & interactive portfolio showcase.",
