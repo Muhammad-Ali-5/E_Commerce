@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/app/components/ThemeContext";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,6 +16,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     { className, variant = "primary", size = "md", children, ...props },
     ref
   ) => {
+    const { theme } = useTheme();
+    const isDark = theme === "dark";
+
     const sizeClasses = {
       sm: "px-3.5 py-1.5 text-xs rounded-full font-medium",
       md: "px-5 py-2 text-xs font-semibold tracking-wide rounded-full",
@@ -22,14 +26,18 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     const variantClasses = {
-      primary:
-        "bg-white text-black hover:bg-zinc-200 font-semibold shadow-sm transition-all duration-200 active:scale-[0.98]",
-      secondary:
-        "bg-zinc-900 text-white border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all duration-200",
-      outline:
-        "border border-zinc-700 text-zinc-200 hover:bg-zinc-800 hover:border-zinc-500 rounded-full transition-all duration-200",
-      ghost:
-        "text-zinc-400 hover:text-white hover:bg-zinc-800/60 rounded-full transition-all duration-200",
+      primary: isDark
+        ? "bg-white text-black hover:bg-zinc-200 font-semibold shadow-sm transition-all duration-200 active:scale-[0.98]"
+        : "bg-zinc-900 text-white hover:bg-zinc-800 font-semibold shadow-sm transition-all duration-200 active:scale-[0.98]",
+      secondary: isDark
+        ? "bg-zinc-900 text-white border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all duration-200"
+        : "bg-zinc-100 text-zinc-900 border border-zinc-300 hover:bg-zinc-200 hover:border-zinc-400 transition-all duration-200",
+      outline: isDark
+        ? "border border-zinc-700 text-zinc-200 hover:bg-zinc-800 hover:border-zinc-500 rounded-full transition-all duration-200"
+        : "border border-zinc-300 text-zinc-800 hover:bg-zinc-100 hover:border-zinc-400 rounded-full transition-all duration-200",
+      ghost: isDark
+        ? "text-zinc-400 hover:text-white hover:bg-zinc-800/60 rounded-full transition-all duration-200"
+        : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 rounded-full transition-all duration-200",
     };
 
     return (

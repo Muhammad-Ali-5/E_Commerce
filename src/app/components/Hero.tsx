@@ -29,7 +29,7 @@ export default function Hero() {
             <span className="text-zinc-500 font-normal">Without Raster Images.</span>
           </h1>
 
-          <p className="text-sm sm:text-base text-zinc-400 max-w-xl leading-relaxed">
+          <p className={`text-sm sm:text-base max-w-xl leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
             Experience 100% procedural vector graphic product visualizers, real-time cart state, discount calculators, and instant interactive portfolio reviews.
           </p>
 
@@ -42,24 +42,28 @@ export default function Hero() {
               </Button>
             </a>
 
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-zinc-800 text-xs font-mono text-zinc-400 bg-zinc-900/40">
-              <Layers className="size-4 text-zinc-400" /> SVG Rendered
+            <div className={`flex items-center gap-2 px-4 py-2.5 rounded-full border text-xs font-mono ${
+              isDark ? "border-zinc-800 text-zinc-400 bg-zinc-900/40" : "border-zinc-300 text-zinc-700 bg-zinc-100"
+            }`}>
+              <Layers className={`size-4 ${isDark ? "text-zinc-400" : "text-zinc-600"}`} /> SVG Rendered
             </div>
           </div>
 
           {/* Stats Bar */}
-          <div className="pt-6 grid grid-cols-3 gap-4 border-t border-zinc-800/80 text-xs font-mono">
+          <div className={`pt-6 grid grid-cols-3 gap-4 border-t text-xs font-mono ${
+            isDark ? "border-zinc-800/80" : "border-zinc-200"
+          }`}>
             <div>
-              <span className="block text-lg font-bold text-white">0%</span>
-              <span className="text-zinc-500">Image Reliance</span>
+              <span className={`block text-base sm:text-lg font-bold ${isDark ? "text-white" : "text-zinc-900"}`}>0%</span>
+              <span className={isDark ? "text-zinc-500" : "text-zinc-600"}>Image Reliance</span>
             </div>
             <div>
-              <span className="block text-lg font-bold text-white">100%</span>
-              <span className="text-zinc-500">Client State</span>
+              <span className={`block text-base sm:text-lg font-bold ${isDark ? "text-white" : "text-zinc-900"}`}>100%</span>
+              <span className={isDark ? "text-zinc-500" : "text-zinc-600"}>Client State</span>
             </div>
             <div>
-              <span className="block text-lg font-bold text-white">&lt;50ms</span>
-              <span className="text-zinc-500">Interaction</span>
+              <span className={`block text-base sm:text-lg font-bold ${isDark ? "text-white" : "text-zinc-900"}`}>&lt;50ms</span>
+              <span className={isDark ? "text-zinc-500" : "text-zinc-600"}>Interaction</span>
             </div>
           </div>
         </div>

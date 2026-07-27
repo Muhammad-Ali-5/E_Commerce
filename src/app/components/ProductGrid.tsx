@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { SlidersHorizontal, Layers, X, ShieldCheck, ShoppingBag } from "lucide-react";
 import ProductCard from "./ProductCard";
 import ProductVector from "./ProductVector";
@@ -88,6 +89,11 @@ export default function ProductGrid({ searchQuery = "" }: ProductGridProps) {
 
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [inspectProduct, setInspectProduct] = useState<ProductItem | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const categories = ["All", "Displays", "Peripherals", "Audio & IoT", "SaaS Modules"];
 
@@ -104,9 +110,9 @@ export default function ProductGrid({ searchQuery = "" }: ProductGridProps) {
   });
 
   return (
-    <section id="catalog" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
+    <section id="catalog" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8 w-full min-w-0">
       {/* Category Pills & Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800 w-full min-w-0">
         <div>
           <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block mb-1">
             Hardware Catalog
@@ -116,7 +122,7 @@ export default function ProductGrid({ searchQuery = "" }: ProductGridProps) {
           </h2>
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none max-w-full min-w-0 w-full">
           <SlidersHorizontal className="size-4 text-zinc-400 mr-1 shrink-0" />
           {categories.map((cat) => (
             <button
@@ -140,7 +146,7 @@ export default function ProductGrid({ searchQuery = "" }: ProductGridProps) {
 
       {/* Grid */}
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full min-w-0">
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
@@ -156,42 +162,52 @@ export default function ProductGrid({ searchQuery = "" }: ProductGridProps) {
         </div>
       )}
 
-      {/* Quick Spec Inspection Modal */}
-      {inspectProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="fixed inset-0" onClick={() => setInspectProduct(null)} />
+      {/* Quick Spec Inspection Modal Portal */}
+      {inspectProduct && mounted && createPortal(
+        <div className="fixed inset-0 z-[100] w-screen h-screen flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="fixed inset-0 w-full h-full" onClick={() => setInspectProduct(null)} />
 
-          <div className={`relative z-10 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl border p-6 space-y-6 ${
+          <div className={`relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl border p-6 sm:p-8 space-y-6 ${
             isDark ? "bg-[#09090b] border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"
           }`}>
             <button
               onClick={() => setInspectProduct(null)}
-              className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-white rounded-full bg-zinc-900 border border-zinc-800"
+              className={`absolute top-4 right-4 p-2 rounded-full border transition-colors cursor-pointer ${
+                isDark
+                  ? "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
+                  : "bg-zinc-100 border-zinc-300 text-zinc-600 hover:text-zinc-900"
+              }`}
             >
               <X className="size-5" />
             </button>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center pt-2 sm:pt-0">
               <div className="h-56 rounded-2xl bg-zinc-950 p-4 border border-zinc-800 flex items-center justify-center">
                 <ProductVector type={inspectProduct.vectorType} />
               </div>
 
               <div className="space-y-4">
                 <div>
-                  <span className="text-[10px] font-mono uppercase text-zinc-400 block">{inspectProduct.category}</span>
+                  <span className={`text-[10px] font-mono uppercase block ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>
+                    {inspectProduct.category}
+                  </span>
                   <h3 className="text-xl font-bold">{inspectProduct.name}</h3>
-                  <span className="text-lg font-extrabold font-mono text-emerald-400">${inspectProduct.price} USD</span>
+                  <span className="text-lg font-extrabold font-mono text-emerald-500">${inspectProduct.price} USD</span>
                 </div>
 
-                <p className="text-xs text-zinc-400 leading-relaxed">
+                <p className={`text-xs leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
                   {inspectProduct.description}
                 </p>
 
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase">Hardware Specifications</span>
+                  <span className={`text-[10px] font-mono uppercase ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>
+                    Hardware Specifications
+                  </span>
                   <div className="flex flex-wrap gap-1.5">
                     {inspectProduct.specs.map((s, idx) => (
-                      <span key={idx} className="px-2.5 py-1 rounded-full bg-zinc-800 text-zinc-200 text-[11px] font-mono">
+                      <span key={idx} className={`px-2.5 py-1 rounded-full text-[11px] font-mono ${
+                        isDark ? "bg-zinc-800 text-zinc-200" : "bg-zinc-100 text-zinc-800 border border-zinc-200"
+                      }`}>
                         {s}
                       </span>
                     ))}
@@ -213,7 +229,8 @@ export default function ProductGrid({ searchQuery = "" }: ProductGridProps) {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );

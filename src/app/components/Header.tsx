@@ -33,11 +33,11 @@ export default function Header({ searchQuery = "", onSearchChange }: HeaderProps
             }`}
           >
             <div
-              className={`size-full rounded-full flex items-center justify-center ${
+              className={`size-full rounded-full flex items-center justify-center overflow-hidden ${
                 isDark ? "bg-black text-white" : "bg-white text-black"
               }`}
             >
-              <Cpu className="size-5" />
+              <img src="/favicon-32x32.png" alt="Apex Logo" className="size-5 object-contain" />
             </div>
           </div>
           <div>

@@ -13,7 +13,7 @@ export default function Home() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   return (
-    <main className="min-h-screen flex flex-col">
+    <main className="min-h-screen flex flex-col w-full">
       <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
       <Hero />
       <ProductGrid searchQuery={searchQuery} />

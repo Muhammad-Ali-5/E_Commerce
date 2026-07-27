@@ -34,7 +34,7 @@ export default function ProductCard({ product, onQuickInspect }: ProductCardProp
     >
       {/* Top Vector Graphics Container */}
       <div className="relative aspect-[4/3] rounded-2xl bg-zinc-950 p-4 border border-zinc-800 flex items-center justify-center overflow-hidden mb-4">
-        <ProductVector type={product.vectorType} className="group-hover:scale-105 transition-transform duration-500" />
+        <ProductVector type={product.vectorType} className="max-w-full max-h-full group-hover:scale-105 transition-transform duration-500" />
         
         {/* Badge */}
         {product.badge && (
@@ -46,7 +46,7 @@ export default function ProductCard({ product, onQuickInspect }: ProductCardProp
         {/* Quick View Trigger */}
         <button
           onClick={() => onQuickInspect(product)}
-          className="absolute bottom-2.5 right-2.5 p-2 rounded-full bg-black/80 text-zinc-300 hover:text-white backdrop-blur-md border border-zinc-700 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+          className="absolute bottom-2.5 right-2.5 p-2 rounded-full bg-black/80 text-zinc-300 hover:text-white backdrop-blur-md border border-zinc-700 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity cursor-pointer z-10"
           title="Quick Spec Inspection"
         >
           <Eye className="size-3.5" />
