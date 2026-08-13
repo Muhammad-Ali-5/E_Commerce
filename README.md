@@ -48,7 +48,7 @@ Engineered with 100% procedural vector graphic product visualizers (zero raster 
 - **Language**: TypeScript 5.0
 - **Styling**: Tailwind CSS 3.4
 - **UI Primitives**: Radix UI & Shadcn UI
-- **Drawer & Notifications**: Vaul Drawer & Sonner Toasts
+- **Drawer & Modals**: Custom Slide-Over & Modal Overlays (React Portals & Tailwind CSS)
 - **Icons**: Lucide React
 
 ---
